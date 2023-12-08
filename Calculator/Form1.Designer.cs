@@ -284,7 +284,7 @@
             btnDelete.FlatAppearance.BorderSize = 0;
             btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
             btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Location = new Point(666, 357);
+            btnDelete.Location = new Point(306, 370);
             btnDelete.Margin = new Padding(0);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(19, 20);
@@ -313,7 +313,7 @@
             lblHistoryText.AutoSize = true;
             lblHistoryText.BackColor = SystemColors.ScrollBar;
             lblHistoryText.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lblHistoryText.Location = new Point(372, 71);
+            lblHistoryText.Location = new Point(12, 84);
             lblHistoryText.Name = "lblHistoryText";
             lblHistoryText.Size = new Size(170, 23);
             lblHistoryText.TabIndex = 28;
@@ -324,7 +324,7 @@
             // 
             rtbHistory.BackColor = SystemColors.ScrollBar;
             rtbHistory.BorderStyle = BorderStyle.None;
-            rtbHistory.Location = new Point(372, 68);
+            rtbHistory.Location = new Point(12, 81);
             rtbHistory.Margin = new Padding(5);
             rtbHistory.Name = "rtbHistory";
             rtbHistory.ReadOnly = true;
@@ -336,7 +336,7 @@
             // btnSave
             // 
             btnSave.BackColor = SystemColors.ButtonShadow;
-            btnSave.Location = new Point(374, 350);
+            btnSave.Location = new Point(14, 363);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(51, 27);
             btnSave.TabIndex = 32;
@@ -349,7 +349,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(776, 408);
+            ClientSize = new Size(340, 408);
             Controls.Add(btnSave);
             Controls.Add(btnDelete);
             Controls.Add(lblHistoryText);

@@ -12,7 +12,6 @@ namespace Calculator
         public Form1()
         {
             InitializeComponent();
-           // this.KeyPress += new KeyPressEventHandler(CalculatorForm_KeyPress);
         }
 
         private void tbResult_KeyPress(object sender, KeyPressEventArgs e)
@@ -22,14 +21,6 @@ namespace Calculator
                 e.Handled = true;
             }
         }
-
-        /*private void CalculatorForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar))
-            {
-                tbResult.Text += e.KeyChar;
-            }
-        }*/
         private void Digit_Click(object sender, EventArgs e)
         {
             if ((tbResult.Text == "0") || (isOperationOnPerformed))
@@ -38,7 +29,7 @@ namespace Calculator
             }
 
             isOperationOnPerformed = false;
-            Button btn = (Button)sender;
+            System.Windows.Forms.Button btn = (System.Windows.Forms.Button) sender;
             if (btn.Text == ".")
             {
                 if (!tbResult.Text.Contains("."))
@@ -52,7 +43,7 @@ namespace Calculator
 
         private void operator_Click(object sender, EventArgs e)
         {
-            Button btn1 = (Button)sender;
+            System.Windows.Forms.Button btn1 = (System.Windows.Forms.Button)sender;
             if (resultValue != 0)
             {
                 btnEquel.PerformClick();
