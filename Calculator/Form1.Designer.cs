@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tbResult = new TextBox();
             labelShow = new Label();
@@ -54,6 +55,7 @@
             lblHistoryText = new Label();
             rtbHistory = new RichTextBox();
             btnSave = new Button();
+            historyHoverTooltip = new ToolTip(components);
             SuspendLayout();
             // 
             // tbResult
@@ -350,6 +352,7 @@
             rtbHistory.TabIndex = 29;
             rtbHistory.Text = "";
             rtbHistory.Visible = false;
+            rtbHistory.SelectionChanged += rtbHistory_SelectionChanged;
             // 
             // btnSave
             // 
@@ -438,5 +441,6 @@
         private Label lblHistoryText;
         private RichTextBox rtbHistory;
         private Button btnSave;
+        private ToolTip historyHoverTooltip;
     }
 }

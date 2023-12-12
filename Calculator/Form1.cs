@@ -143,4 +143,78 @@ public partial class Form1 : Form
             }
         }
     }
+
+    private void rtbHistory_SelectionChanged(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(rtbHistory.SelectedText.Trim()))
+        {
+            // TODO : parase line and display result
+
+            var multilineString = rtbHistory.SelectedText.Trim();
+
+            double result = 0;
+            int lineCounter = 0;
+
+            using (StringReader reader = new(multilineString))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.Contains('='))
+                    {
+                        var operations = line.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+
+                        if(operations.Length == 0)
+                        {
+                            continue;
+                        }
+                        var operation = operations[0].Trim();
+                        if (operation.Contains('+'))
+                        {
+                            var digits = operation.Split(new string[] { "+" }, StringSplitOptions.RemoveEmptyEntries);
+                            if (digits.Length != 2)
+                            {
+                                continue;
+                            }
+
+                            double digit1 = Double.Parse(digits[0]);
+                            double digit2 = Double.Parse(digits[1]);
+
+                            if (lineCounter == 0)
+                            {
+                                result = digit1 + digit2;
+                            }
+                            else if (result == digit1)
+                            {
+                                result += digit2;
+                            }
+                            else if (result == digit2)
+                            {
+                                result += digit1;
+                            }
+                            else
+                            {
+                                result = digit1 + digit2;
+                            }
+                        }
+                        else if (operation.Contains('-'))
+                        {
+                        }
+                        else if (operation.Contains('*'))
+                        {
+                        }
+                        else if (operation.Contains('/'))
+                        {
+                        }
+                    }
+                    lineCounter++;
+                }
+            }
+
+            if (result > 0)
+            {
+                historyHoverTooltip.Show("result is : " + result.ToString(), rtbHistory);
+            }
+        }
+    }
 }
