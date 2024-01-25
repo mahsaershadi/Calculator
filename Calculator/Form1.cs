@@ -1,5 +1,7 @@
-namespace Calculator;
+using System;
+using System.Data.SqlClient;
 
+namespace Calculator;
 public partial class Form1 : Form
 {
     private double resultValue = 0;
@@ -138,20 +140,14 @@ public partial class Form1 : Form
     //saving history data in txt file
     private void btnSave_Click(object sender, EventArgs e)
     {
-        SaveFileDialog saveFileDialog = new()
-        {
-            Filter = "Text File|*.txt"
-        };
-
-        if (saveFileDialog.ShowDialog() == DialogResult.OK)
-        {
-            // Save the history data to the specified text file
-            string filePath = saveFileDialog.FileName;
-            using (StreamWriter sw = new(filePath))
-            {
-                sw.WriteLine(rtbHistory.Text);
-            }
-        }
+        string connectionString;
+        SqlConnection cnn;
+        connectionString = @"Data Source=.;Initial Catalog=Calculator_DB;Integrated Security=SSPI;Persist Security Info=False";
+        cnn = new SqlConnection(connectionString);
+        cnn.Open();
+        SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[calculator_Table] (First_number, Operator, Second_number) Values ('" + float.Parse(FirstNum)+"', '" + char.Parse(operationPerformed) + "', '" + float.Parse(SecondNum) + "')", cnn);
+        cmd.ExecuteNonQuery();
+        
     }
 
     //selection feature in history section
@@ -159,8 +155,6 @@ public partial class Form1 : Form
     {
         if (!string.IsNullOrWhiteSpace(rtbHistory.SelectedText.Trim()))
         {
-            // TODO : parase line and display result
-
             var multilineString = rtbHistory.SelectedText.Trim();
 
             double result = 0;
