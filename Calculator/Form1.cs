@@ -1,5 +1,7 @@
-namespace Calculator;
+using System;
+using System.Data.SqlClient;
 
+namespace Calculator;
 public partial class Form1 : Form
 {
     private double resultValue = 0;
@@ -12,6 +14,7 @@ public partial class Form1 : Form
         InitializeComponent();
     }
 
+    //user cannot add anything in the out put of the calculator
     private void tbResult_KeyPress(object sender, KeyPressEventArgs e)
     {
         if (!Char.IsDigit(e.KeyChar))
@@ -20,6 +23,7 @@ public partial class Form1 : Form
         }
     }
 
+    //for clicking on the digit
     private void Digit_Click(object sender, EventArgs e)
     {
         if (tbResult.Text.Equals("0") || isOperationOnPerformed)
@@ -40,6 +44,7 @@ public partial class Form1 : Form
         }
     }
 
+    //for clicking on the operations
     private void operator_Click(object sender, EventArgs e)
     {
         System.Windows.Forms.Button btn1 = (System.Windows.Forms.Button)sender;
@@ -61,17 +66,22 @@ public partial class Form1 : Form
         FirstNum = labelShow.Text;
     }
 
+    //clear buttons
     private void btnCE_Click(object sender, EventArgs e)
     {
-        tbResult.Text = "0";
-    }
+        //tbResult.Text = "0";
+        resultValue = 0;
 
+        // Update the display to show the cleared value
+        tbResult.Text = resultValue.ToString();
+    }
     private void btnC_Click(object sender, EventArgs e)
     {
         tbResult.Text = "0";
         resultValue = 0;
     }
 
+    //for equel button
     private void btnEquel_Click(object sender, EventArgs e)
     {
         SecondNum = tbResult.Text;
@@ -100,12 +110,13 @@ public partial class Form1 : Form
         resultValue = Double.Parse(tbResult.Text);
         labelShow.Text = string.Empty;
 
-        //for history part
+        //for append everything in the text box to the history part
         rtbHistory.AppendText(FirstNum + " " + SecondNum + " = " + "\n");
         rtbHistory.AppendText("\t" + tbResult.Text + "\n\n");
         lblHistoryText.Text = string.Empty;
     }
 
+    //history section
     private void btnHistory_Click(object sender, EventArgs e)
     {
         btnDelete.Visible = !btnDelete.Visible;
@@ -116,6 +127,7 @@ public partial class Form1 : Form
         btnSave.BringToFront();
     }
 
+    //delete history
     private void btnDelete_Click(object sender, EventArgs e)
     {
         rtbHistory.Clear();
@@ -128,28 +140,21 @@ public partial class Form1 : Form
     //saving history data in txt file
     private void btnSave_Click(object sender, EventArgs e)
     {
-        SaveFileDialog saveFileDialog = new()
-        {
-            Filter = "Text File|*.txt"
-        };
-
-        if (saveFileDialog.ShowDialog() == DialogResult.OK)
-        {
-            // Save the history data to the specified text file
-            string filePath = saveFileDialog.FileName;
-            using (StreamWriter sw = new(filePath))
-            {
-                sw.WriteLine(rtbHistory.Text);
-            }
-        }
+        string connectionString;
+        SqlConnection cnn;
+        connectionString = @"Data Source=.;Initial Catalog=Calculator_DB;Integrated Security=SSPI;Persist Security Info=False";
+        cnn = new SqlConnection(connectionString);
+        cnn.Open();
+        SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[calculator_Table] (First_number, Operator, Second_number) Values ('" + float.Parse(FirstNum)+"', '" + char.Parse(operationPerformed) + "', '" + float.Parse(SecondNum) + "')", cnn);
+        cmd.ExecuteNonQuery();
+        
     }
 
+    //selection feature in history section
     private void rtbHistory_SelectionChanged(object sender, EventArgs e)
     {
         if (!string.IsNullOrWhiteSpace(rtbHistory.SelectedText.Trim()))
         {
-            // TODO : parase line and display result
-
             var multilineString = rtbHistory.SelectedText.Trim();
 
             double result = 0;
@@ -199,12 +204,87 @@ public partial class Form1 : Form
                         }
                         else if (operation.Contains('-'))
                         {
+                            var digits = operation.Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries);
+                            if (digits.Length != 2)
+                            {
+                                continue;
+                            }
+
+                            double digit1 = Double.Parse(digits[0]);
+                            double digit2 = Double.Parse(digits[1]);
+
+                            if (lineCounter == 0)
+                            {
+                                result = digit1 - digit2;
+                            }
+                            else if (result == digit1)
+                            {
+                                result -= digit2;
+                            }
+                            else if (result == digit2)
+                            {
+                                result -= digit1;
+                            }
+                            else
+                            {
+                                result = digit1 - digit2;
+                            }
                         }
                         else if (operation.Contains('*'))
                         {
+                            var digits = operation.Split(new string[] { "*" }, StringSplitOptions.RemoveEmptyEntries);
+                            if (digits.Length != 2)
+                            {
+                                continue;
+                            }
+
+                            double digit1 = Double.Parse(digits[0]);
+                            double digit2 = Double.Parse(digits[1]);
+
+                            if (lineCounter == 0)
+                            {
+                                result = digit1 * digit2;
+                            }
+                            else if (result == digit1)
+                            {
+                                result *= digit2;
+                            }
+                            else if (result == digit2)
+                            {
+                                result *= digit1;
+                            }
+                            else
+                            {
+                                result = digit1 * digit2;
+                            }
                         }
                         else if (operation.Contains('/'))
                         {
+                            var digits = operation.Split(new string[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
+                            if (digits.Length != 2)
+                            {
+                                continue;
+                            }
+
+                            double digit1 = Double.Parse(digits[0]);
+                            double digit2 = Double.Parse(digits[1]);
+
+                            if (lineCounter == 0)
+                            {
+                               result = digit1 / digit2;
+                            }
+                            else if (result == digit1)
+                            {
+                                result /= digit2;
+                            }
+                            else if (result == digit2)
+                            {
+                                result /= digit1;
+                            }
+                            else
+                            {
+                                result = digit1 / digit2;
+                            }
                         }
                     }
                     lineCounter++;
@@ -213,7 +293,7 @@ public partial class Form1 : Form
 
             if (result > 0)
             {
-                historyHoverTooltip.Show("result is : " + result.ToString(), rtbHistory);
+                historyHoverTooltip.Show("result is: " + result.ToString(), rtbHistory);
             }
         }
     }
