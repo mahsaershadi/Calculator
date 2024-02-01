@@ -2,6 +2,7 @@ using System;
 using System.Data.SqlClient;
 
 namespace Calculator;
+
 public partial class Form1 : Form
 {
     private double resultValue = 0;
@@ -75,6 +76,7 @@ public partial class Form1 : Form
         // Update the display to show the cleared value
         tbResult.Text = resultValue.ToString();
     }
+
     private void btnC_Click(object sender, EventArgs e)
     {
         tbResult.Text = "0";
@@ -142,12 +144,13 @@ public partial class Form1 : Form
     {
         string connectionString;
         SqlConnection cnn;
-        connectionString = @"Data Source=.;Initial Catalog=Calculator_DB;Integrated Security=SSPI;Persist Security Info=False";
+        connectionString = @"Data Source=saseco.ir;Initial Catalog=Calculator;USER ID=calculator;password=cde3VFR$12;MultipleActiveResultSets=true;";
         cnn = new SqlConnection(connectionString);
         cnn.Open();
-        SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[calculator_Table] (First_number, Operator, Second_number) Values ('" + float.Parse(FirstNum)+"', '" + char.Parse(operationPerformed) + "', '" + float.Parse(SecondNum) + "')", cnn);
+        string cmdString = "INSERT INTO [dbo].[History] (FirstNumber, Operator, SecondNumber) Values (" + "65" + ", '" + operationPerformed + "', " + SecondNum + ")";
+
+        SqlCommand cmd = new(cmdString, cnn);
         cmd.ExecuteNonQuery();
-        
     }
 
     //selection feature in history section
@@ -169,7 +172,7 @@ public partial class Form1 : Form
                     {
                         var operations = line.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
 
-                        if(operations.Length == 0)
+                        if (operations.Length == 0)
                         {
                             continue;
                         }
@@ -271,7 +274,7 @@ public partial class Form1 : Form
 
                             if (lineCounter == 0)
                             {
-                               result = digit1 / digit2;
+                                result = digit1 / digit2;
                             }
                             else if (result == digit1)
                             {
