@@ -1,7 +1,14 @@
+using Calculator.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
+using System.ComponentModel;
+using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 
 namespace Calculator;
+
 public partial class Form1 : Form
 {
     private double resultValue = 0;
@@ -75,6 +82,7 @@ public partial class Form1 : Form
         // Update the display to show the cleared value
         tbResult.Text = resultValue.ToString();
     }
+
     private void btnC_Click(object sender, EventArgs e)
     {
         tbResult.Text = "0";
@@ -140,14 +148,7 @@ public partial class Form1 : Form
     //saving history data in txt file
     private void btnSave_Click(object sender, EventArgs e)
     {
-        string connectionString;
-        SqlConnection cnn;
-        connectionString = @"Data Source=.;Initial Catalog=Calculator_DB;Integrated Security=SSPI;Persist Security Info=False";
-        cnn = new SqlConnection(connectionString);
-        cnn.Open();
-        SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[calculator_Table] (First_number, Operator, Second_number) Values ('" + float.Parse(FirstNum)+"', '" + char.Parse(operationPerformed) + "', '" + float.Parse(SecondNum) + "')", cnn);
-        cmd.ExecuteNonQuery();
-        
+
     }
 
     //selection feature in history section
@@ -169,7 +170,7 @@ public partial class Form1 : Form
                     {
                         var operations = line.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
 
-                        if(operations.Length == 0)
+                        if (operations.Length == 0)
                         {
                             continue;
                         }
@@ -271,7 +272,7 @@ public partial class Form1 : Form
 
                             if (lineCounter == 0)
                             {
-                               result = digit1 / digit2;
+                                result = digit1 / digit2;
                             }
                             else if (result == digit1)
                             {
@@ -296,5 +297,22 @@ public partial class Form1 : Form
                 historyHoverTooltip.Show("result is: " + result.ToString(), rtbHistory);
             }
         }
+    }
+
+    private List<CalculatorTable> calculationHistoryList = new List<CalculatorTable>();
+    private void button1_Click(object sender, EventArgs e)
+    {
+        calculationHistoryList.Add(new CalculatorTable
+        {
+            FirstNumber = double.Parse(FirstNum),
+            Operator = operationPerformed,
+            SecondNumber = double.Parse(SecondNum)
+        });
+        historyDataGridView.Rows.Add(FirstNum + operationPerformed + SecondNum);
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
+        var historyBindingList = new BindingList<CalculatorTable>(calculationHistoryList);
     }
 }

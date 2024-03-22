@@ -56,11 +56,14 @@
             rtbHistory = new RichTextBox();
             btnSave = new Button();
             historyHoverTooltip = new ToolTip(components);
+            historyDataGridView = new DataGridView();
+            button1 = new Button();
+            ((System.ComponentModel.ISupportInitialize)historyDataGridView).BeginInit();
             SuspendLayout();
             // 
             // tbResult
             // 
-            tbResult.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbResult.Font = new Font("Segoe UI", 13.8F);
             tbResult.Location = new Point(11, 81);
             tbResult.Multiline = true;
             tbResult.Name = "tbResult";
@@ -71,7 +74,7 @@
             // 
             // labelShow
             // 
-            labelShow.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            labelShow.Font = new Font("Segoe UI", 10.8F);
             labelShow.ForeColor = SystemColors.ControlDarkDark;
             labelShow.Location = new Point(11, 48);
             labelShow.Name = "labelShow";
@@ -80,7 +83,7 @@
             // 
             // btnDivision
             // 
-            btnDivision.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDivision.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btnDivision.Location = new Point(206, 143);
             btnDivision.Name = "btnDivision";
             btnDivision.Size = new Size(58, 59);
@@ -91,7 +94,7 @@
             // 
             // btnPoint
             // 
-            btnPoint.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPoint.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btnPoint.Location = new Point(142, 335);
             btnPoint.Name = "btnPoint";
             btnPoint.Size = new Size(58, 59);
@@ -102,7 +105,7 @@
             // 
             // btn1
             // 
-            btn1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn1.Location = new Point(14, 271);
             btn1.Name = "btn1";
             btn1.Size = new Size(58, 59);
@@ -113,7 +116,7 @@
             // 
             // btn2
             // 
-            btn2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn2.Location = new Point(78, 271);
             btn2.Name = "btn2";
             btn2.Size = new Size(58, 59);
@@ -124,7 +127,7 @@
             // 
             // btn3
             // 
-            btn3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn3.Location = new Point(142, 271);
             btn3.Name = "btn3";
             btn3.Size = new Size(58, 59);
@@ -135,7 +138,7 @@
             // 
             // btn4
             // 
-            btn4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn4.Location = new Point(14, 207);
             btn4.Name = "btn4";
             btn4.Size = new Size(58, 59);
@@ -146,7 +149,7 @@
             // 
             // btn5
             // 
-            btn5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn5.Location = new Point(78, 207);
             btn5.Name = "btn5";
             btn5.Size = new Size(58, 59);
@@ -157,7 +160,7 @@
             // 
             // btn6
             // 
-            btn6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn6.Location = new Point(142, 207);
             btn6.Name = "btn6";
             btn6.Size = new Size(58, 59);
@@ -168,7 +171,7 @@
             // 
             // btnC
             // 
-            btnC.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnC.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             btnC.Location = new Point(270, 207);
             btnC.Name = "btnC";
             btnC.Size = new Size(58, 59);
@@ -179,7 +182,7 @@
             // 
             // btn7
             // 
-            btn7.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn7.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn7.Location = new Point(14, 143);
             btn7.Name = "btn7";
             btn7.Size = new Size(58, 59);
@@ -190,7 +193,7 @@
             // 
             // btn8
             // 
-            btn8.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn8.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn8.Location = new Point(78, 143);
             btn8.Name = "btn8";
             btn8.Size = new Size(58, 59);
@@ -201,7 +204,7 @@
             // 
             // btn9
             // 
-            btn9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn9.Location = new Point(142, 143);
             btn9.Name = "btn9";
             btn9.Size = new Size(58, 59);
@@ -212,7 +215,7 @@
             // 
             // btnCE
             // 
-            btnCE.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCE.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             btnCE.Location = new Point(270, 143);
             btnCE.Name = "btnCE";
             btnCE.Size = new Size(58, 59);
@@ -223,7 +226,7 @@
             // 
             // btnSum
             // 
-            btnSum.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSum.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btnSum.Location = new Point(206, 335);
             btnSum.Name = "btnSum";
             btnSum.Size = new Size(58, 59);
@@ -234,7 +237,7 @@
             // 
             // btnMinus
             // 
-            btnMinus.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMinus.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btnMinus.Location = new Point(206, 271);
             btnMinus.Name = "btnMinus";
             btnMinus.Size = new Size(58, 59);
@@ -245,7 +248,7 @@
             // 
             // btnMultiple
             // 
-            btnMultiple.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMultiple.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btnMultiple.Location = new Point(206, 207);
             btnMultiple.Name = "btnMultiple";
             btnMultiple.Size = new Size(58, 59);
@@ -256,7 +259,7 @@
             // 
             // btn0
             // 
-            btn0.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btn0.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btn0.Location = new Point(14, 335);
             btn0.Name = "btn0";
             btn0.Size = new Size(122, 59);
@@ -268,7 +271,7 @@
             // btnEquel
             // 
             btnEquel.BackColor = SystemColors.ActiveCaption;
-            btnEquel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEquel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             btnEquel.Location = new Point(270, 271);
             btnEquel.Name = "btnEquel";
             btnEquel.Size = new Size(58, 123);
@@ -285,7 +288,7 @@
             btnDelete.FlatAppearance.BorderSize = 0;
             btnDelete.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
             btnDelete.FlatStyle = FlatStyle.Flat;
-            btnDelete.Location = new Point(306, 371);
+            btnDelete.Location = new Point(694, 371);
             btnDelete.Margin = new Padding(0);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(19, 20);
@@ -313,8 +316,8 @@
             // 
             lblHistoryText.AutoSize = true;
             lblHistoryText.BackColor = SystemColors.ScrollBar;
-            lblHistoryText.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lblHistoryText.Location = new Point(11, 84);
+            lblHistoryText.Font = new Font("Segoe UI", 10.2F);
+            lblHistoryText.Location = new Point(398, 55);
             lblHistoryText.Name = "lblHistoryText";
             lblHistoryText.Size = new Size(170, 23);
             lblHistoryText.TabIndex = 28;
@@ -325,8 +328,8 @@
             // 
             rtbHistory.BackColor = SystemColors.ScrollBar;
             rtbHistory.BorderStyle = BorderStyle.None;
-            rtbHistory.Location = new Point(10, 79);
-            rtbHistory.Margin = new Padding(5, 5, 5, 5);
+            rtbHistory.Location = new Point(398, 79);
+            rtbHistory.Margin = new Padding(5);
             rtbHistory.Name = "rtbHistory";
             rtbHistory.ReadOnly = true;
             rtbHistory.Size = new Size(317, 315);
@@ -338,7 +341,7 @@
             // btnSave
             // 
             btnSave.BackColor = SystemColors.ButtonShadow;
-            btnSave.Location = new Point(14, 360);
+            btnSave.Location = new Point(402, 360);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(51, 31);
             btnSave.TabIndex = 32;
@@ -347,11 +350,32 @@
             btnSave.Visible = false;
             btnSave.Click += btnSave_Click;
             // 
+            // historyDataGridView
+            // 
+            historyDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            historyDataGridView.Location = new Point(397, 83);
+            historyDataGridView.Name = "historyDataGridView";
+            historyDataGridView.RowHeadersWidth = 51;
+            historyDataGridView.Size = new Size(316, 313);
+            historyDataGridView.TabIndex = 33;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(563, 20);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 34;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(341, 408);
+            ClientSize = new Size(783, 408);
+            Controls.Add(button1);
+            Controls.Add(historyDataGridView);
             Controls.Add(btnSave);
             Controls.Add(btnDelete);
             Controls.Add(lblHistoryText);
@@ -382,6 +406,8 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Calculator";
+            Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)historyDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -421,5 +447,7 @@
         private RichTextBox rtbHistory;
         private Button btnSave;
         private ToolTip historyHoverTooltip;
+        private DataGridView historyDataGridView;
+        private Button button1;
     }
 }
